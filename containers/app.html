@@ -1,0 +1,11 @@
+<div>
+  <ngr-newPost on-submit="app.handleSubmit">
+  </ngr-newPost>
+  <br>
+  <h2 ng-show="app.isFetching && app.posts.length === 0">Loading...</h2>
+  <h2 ng-show="!app.isFetching && app.posts.length === 0">Empty.</h2>
+  <div ng-show="app.posts.length > 0"
+    ng-style="{ opacity: app.isFetching ? 0.5 : 1 }">
+    <ngr-posts posts="app.posts"></ngr-posts>
+  </div>
+</div>
