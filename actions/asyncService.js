@@ -1,5 +1,7 @@
 import * as types from '../constants/ActionTypes';
 
+const API_URL = 'https://jsonplaceholder.typicode.com/posts';
+
 function submitForm(postObj) {
     console.log('submitForm: ' + postObj);
   return {
@@ -25,17 +27,19 @@ export default function asyncService($http) {
   function fetchPosts() {
     return dispatch => {
       dispatch(requestPosts());
-      return $http.get('https://jsonplaceholder.typicode.com/posts')
+      return $http.get(API_URL)
         .then(response => response.data)
         .then(json => dispatch(receivePosts(json)));
     };
   }
 
     function addPost() {
+      var testData = {userId: "999999",title: "testTiempo",body: "bodybodybody"};
         return dispatch => {
             dispatch(submitForm());
-            return $http.post('https://jsonplaceholder.typicode.com/posts',{userId: "999999",title: "testTiempo",body: "bodybodybody"})
-                .then(response => response.data);
+            return $http.post(API_URL,testData)
+                .then(response => response.data)
+                .then(dispatch(fetchPosts()));
         };
     }
 
