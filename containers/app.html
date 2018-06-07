@@ -4,6 +4,9 @@
   <br>
   <h2 ng-show="app.isFetching && app.posts.length === 0">Loading...</h2>
   <h2 ng-show="!app.isFetching && app.posts.length === 0">Empty.</h2>
+  <div ng-show="app.userPosts.length > 0">
+    <ngr-posts posts="app.userPosts"></ngr-posts>
+  </div>
   <div ng-show="app.posts.length > 0"
     ng-style="{ opacity: app.isFetching ? 0.5 : 1 }">
     <ngr-posts posts="app.posts"></ngr-posts>

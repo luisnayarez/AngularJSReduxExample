@@ -3,10 +3,10 @@ import * as types from '../constants/ActionTypes';
 const API_URL = 'https://jsonplaceholder.typicode.com/posts';
 
 function submitForm(postObj) {
-    console.log('submitForm: ' + postObj);
+  console.log('submitted', postObj);
   return {
     type: types.SUBMIT_FORM,
-      payload: postObj
+    payload: postObj
   };
 }
 
@@ -33,19 +33,14 @@ export default function asyncService($http) {
     };
   }
 
-    function addPost() {
-      var testData = {userId: "999999",title: "testTiempo",body: "bodybodybody"};
-        return dispatch => {
-            dispatch(submitForm());
-            return $http.post(API_URL,testData)
-                .then(response => response.data)
-                .then(dispatch(fetchPosts()));
-        };
-    }
-
+  function addPost(payload) {
+    return dispatch => {
+      dispatch(submitForm(payload));
+    };
+  }
 
   return {
-      addPost,
-      fetchPosts
+    addPost,
+    fetchPosts
   };
 }
