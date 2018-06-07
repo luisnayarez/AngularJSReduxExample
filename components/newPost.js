@@ -5,9 +5,7 @@ export default function newPost() {
     controller: NewPostController,
     template: require('./newPost.html'),
     scope: {
-      onSubmit: '=',
-      title: '=',
-      body: '='
+      onSubmit: '='
     },
     bindToController: true
   };
